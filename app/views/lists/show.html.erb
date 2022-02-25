@@ -2,11 +2,16 @@
   <div class="container col-6">
     <span class="p-2 bg-light">
     <h3 class="display-4" class="p-2 bg-light border"><%= @list.name %></h3>
+    <% if @list.photo.attached? %>
+      <%= cl_image_tag @list.photo.key, height: 600, width: 800, crop: :fill %>
+    <% else %>
+      <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg" %>
+    <% end %>
     <hr class="my-4">
     <% @list.bookmarks.each do |bookmark| %>
       <div class="card">
-      <h5><%= bookmark.movie.title %></h5>
-      <p class="p-2 bg-light border d-flex justify-content-between"><%= bookmark.comment %>
+      <h5 class="movie-title">Movie Title: <%= bookmark.movie.title %></h5>
+      <p class="p-2 bg-light border d-flex justify-content-between">Review: <%= bookmark.comment %>
       <%= link_to bookmark_path(bookmark),
               method: :delete,
               data: { confirm: "Are you sure?" } do %>

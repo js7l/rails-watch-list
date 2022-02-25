@@ -1,30 +1,3 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-    <img src="https://cdn-icons-png.flaticon.com/512/390/390067.png" />
-</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item active">
-          <a class="nav-link" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Messages</a>
-          </li>
-          <li class="nav-item dropdown">
-            <img class="avatar dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://cdn-icons-png.flaticon.com/512/705/705062.png" />
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-          </div>
-        </li>
-        </ul>
-      </div>
-    </div>
-  </div>
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://media.istockphoto.com/photos/film-reels-on-black-background-movie-video-and-cinema-prodaction-and-picture-id1336937059?k=20&m=1336937059&s=612x612&w=0&h=x6LbQl2wKDTqQzZCwL8ihiZFEFBfgPh-KcoCLnefRx0=);">
   <div class="container">
     <h1>Discover the world of <strong>movies</strong> !</h1>
@@ -33,12 +6,13 @@
     <a class="btn btn-outline-light" href="#">Find out more</a>
   </div>
 </div>
-<div class="jumbotron jumbotron-fluid">
+<div class="cards">
   <% @lists.each do |list| %>
-    <div class="card">
-    <h5 class="card-title"><%= link_to list.name, list, class:"text-decoration-none" %></h5> </div>
+    <% if list.photo.attached? %>
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= cl_image_path list.photo.key, height: 300, crop: :fill %>)"><p class="list-name"><%= link_to list.name, list_path(list) %></p></div>
+    <% else %>
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://media.istockphoto.com/photos/old-blank-ticket-picture-id484126086?k=20&m=484126086&s=170667a&w=0&h=q-mmvYp5Qrqo07SySYU5S-x2RGKMqqggu1dcucn0CmE=)">
+      </div>
     <% end %>
-    <button type="button" class="btn btn-outline-dark">
-    <%= link_to "Add a new list", new_list_path, class:"text-decoration-none" %>
-    </button>
+  <% end %>
 </div>
