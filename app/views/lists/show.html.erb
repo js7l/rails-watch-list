@@ -3,7 +3,7 @@
     <span class="p-2 bg-light">
     <h3 class="display-4" class="p-2 bg-light border"><%= @list.name %></h3>
     <% if @list.photo.attached? %>
-      <%= cl_image_tag @list.photo.key, height: 600, width: 800, crop: :fill %>
+      <%= cl_image_tag @list.photo.key, height: 600, width: 700, crop: :fill %>
     <% else %>
       <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg" %>
     <% end %>
