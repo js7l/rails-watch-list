@@ -1,0 +1,24 @@
+<div class="jumbotron jumbotron-fluid mt-5">
+  <div class="container col-6">
+    <span class="p-2 bg-light">
+    <h3 class="display-4" class="p-2 bg-light border"><%= @list.name %></h3>
+    <hr class="my-4">
+    <% @list.bookmarks.each do |bookmark| %>
+      <h5><%= bookmark.movie.title %></h5>
+      <p class="p-2 bg-light border d-flex justify-content-between"><%= bookmark.comment %>
+      <%= link_to bookmark_path(bookmark),
+              method: :delete,
+              data: { confirm: "Are you sure?" } do %>
+              <i class="fas fa-trash-alt"></i>
+              <% end %></p>
+    <% end %>
+    <br>
+    </span>
+    <div class="btn btn-secondary">
+      <%= link_to "Back to Lists", lists_path, class: "text-white text-decoration-none"%>
+    </div>
+    <div class="btn btn-secondary">
+      <%= link_to "Create a bookmark", new_list_bookmark_path(@list), class: "text-white text-decoration-none"%>
+    </div>
+  </div>
+</div>
